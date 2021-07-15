@@ -1,12 +1,9 @@
-import sys
+import requests
+from bs4 import BeautifulSoup
 
-sys.path.insert(0, './src')
-from goToWeb import ScrapingWeb
+def scraping(base_url):
+  req = requests.get(base_url)
+  soup = BeautifulSoup(req.content, 'html.parser')
+  return soup
 
-def setUp(self, url):
-  self.url = url
-  self.goToWeb.get_soup(self.url)
-
-
-clima = setUp()
-clima.setUp('https://www.climatempo.com.br/previsao-do-tempo/cidade/332/voltaredonda-rj')
+scraping('https://www.climatempo.com.br/previsao-do-tempo/cidade/332/voltaredonda-rj')
